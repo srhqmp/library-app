@@ -10,35 +10,35 @@
   </head>
   <body>
     <div class="sidebar">
-      <div class="branding">
-        <img class="logo-image" width="70" src="images/logo.svg" alt="Logo" />
+      <div>
+        <div class="branding">
+          <img class="logo-image" width="70" src="images/logo.svg" alt="Logo" />
+        </div>
+        <div class="navigation">
+          <ul>
+            <li>
+              <a class="create-new-book-button" href="#new"
+                ><img
+                  src="images/new.svg"
+                  alt="New Book Icon"
+                  width="40"
+                /><span>New Book</span></a
+              >
+            </li>
+            <li>
+              <a href="#"
+                ><img src="images/home.svg" alt="Home Icon" width="40" /><span
+                  >Home</span
+                ></a
+              >
+            </li>
+          </ul>
+        </div>
       </div>
-      <div class="navigation">
-        <ul>
-          <li>
-            <a href="#new"
-              ><img src="images/new.svg" alt="New Book Icon" width="40" /><span
-                >New Book</span
-              ></a
-            >
-          </li>
-          <li>
-            <a href="#"
-              ><img src="images/home.svg" alt="Home Icon" width="40" /><span
-                >Home</span
-              ></a
-            >
-          </li>
-          <li>
-            <a href="#information"
-              ><img
-                src="images/info.svg"
-                alt="Information Icon"
-                width="40"
-              /><span>Information</span></a
-            >
-          </li>
-        </ul>
+      <div class="information">
+        <a href="#information"
+          ><img src="images/info.svg" alt="Information Icon" width="40" />
+        </a>
       </div>
     </div>
     <div class="header">
@@ -46,6 +46,30 @@
     </div>
     <div class="main-content">
       <div class="book-list"></div>
+    </div>
+    <div class="book-form">
+      <div class="container">
+        <h1>Create new book</h1>
+        <button id="close-form-button">x</button>
+
+        <form action="" novalidate>
+          <div class="book-details">
+            <label for="title"> Title<input type="text" id="title" /></label>
+            <label for="author"> Author<input type="text" id="author" /></label>
+            <label for="pages">Pages<input type="text" id="pages" /></label>
+          </div>
+          <div class="read-status">
+            <label for="true"
+              ><input type="radio" name="read" id="true" />Read</label
+            >
+            <label for="false"
+              ><input type="radio" name="read" id="false" checked />Not read
+              yet</label
+            >
+          </div>
+          <button type="submit" class="primary-button">Create</button>
+        </form>
+      </div>
     </div>
   </body>
 </html>

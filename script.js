@@ -73,4 +73,49 @@ function createBookList() {
   myLibrary.forEach((book) => createBookCard(book));
 }
 
+const bookForm = document.querySelector(".book-form");
+
+function clearForm() {
+  document.getElementById("title").value = "";
+  document.getElementById("author").value = "";
+  document.getElementById("pages").value = "";
+  document.getElementById("true").checked = false;
+}
+
+function showBookForm() {
+  clearForm();
+  bookForm.style.display = "flex";
+}
+
+function closeBookForm() {
+  clearForm();
+  bookForm.style.display = "none";
+}
+
+function handleCreateBook(event) {
+  event.preventDefault();
+
+  const title = document.getElementById("title").value;
+  const author = document.getElementById("author").value;
+  const pages = document.getElementById("pages").value;
+  const read = Boolean(document.getElementById("true").checked);
+  
+  if (title && author && pages) {
+    const newBook = addBookToLibrary(title, author, pages, read);
+    createBookCard(newBook);
+    clearForm();
+    closeBookForm();
+  }
+}
+
+document
+  .querySelector(".book-form form")
+  .addEventListener("submit", handleCreateBook);
+document
+  .querySelector(".create-new-book-button")
+  .addEventListener("click", showBookForm);
+document
+  .getElementById("close-form-button")
+  .addEventListener("click", closeBookForm);
+
 createBookList();

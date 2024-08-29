@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Quicksand:wght@300..700&display=swap");
 * {
   /* outline: 1px solid red; */
+  box-sizing: border-box;
 }
 
 :root {
@@ -10,6 +11,7 @@
   --text-color: #333333;
   --secondary-color: #88aabf;
   --foreground-color: #b5b5b5;
+  --transparent-background: rgba(51, 51, 51, 0.75);
 }
 
 h1,
@@ -25,11 +27,13 @@ h6 {
 body {
   margin: 0;
   padding: 0;
+  height: 100vh;
+  overflow: hidden;
   background-color: var(--background-color);
   color: var(--text-color);
   font-family: "Quicksand", sans-serif;
   display: grid;
-  grid-template-columns: 100px 1fr;
+  grid-template-columns: 80px 1fr;
   grid-template-rows: 150px 1fr;
   grid-template-areas:
     "sidebar header header"
@@ -50,8 +54,11 @@ body {
   grid-area: sidebar;
   background-color: var(--primary-color);
   color: var(--background-color);
-  height: 100vh;
+  height: 100%;
   padding: 32px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .navigation ul {
@@ -68,9 +75,25 @@ body {
   margin: auto;
 }
 
-.navigation a {
+.navigation a,
+.information a {
   text-decoration: none;
   color: var(--background-color);
+  background-color: var(--primary-color);
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px,
+    rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+}
+
+.navigation a:hover,
+.information a:hover {
+  background-color: var(--text-color);
+}
+
+.information {
+  display: flex;
+  justify-content: center;
 }
 
 .navigation span {
@@ -90,11 +113,18 @@ body {
   padding: 24px;
   grid-area: main;
   background-color: var(--foreground-color);
+  height: 100%;
 }
 
 .primary-button {
   background-color: var(--primary-color);
   color: var(--accent-color);
+  font-family: "Cinzel", serif;
+  border: none;
+  font-size: 20px;
+  padding: 6px 28px;
+  border-radius: 46px;
+  font-weight: 600;
 }
 
 .primary-button:hover {
@@ -105,16 +135,21 @@ body {
 /* book list START */
 
 .book-list {
+  height: 100%;
+  margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(3, 400px);
-  gap: 24px;
+  grid-template-columns: repeat(auto-fill, 400px);
+  grid-template-rows: repeat(auto-fill, 400px);
+  gap: 12px;
+  overflow-y: scroll;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 .book-card {
   font-size: 16px;
-  height: 300px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 6px;
   background-color: var(--background-color);
   border-radius: 12px;
   padding: 28px 16px;
@@ -130,4 +165,86 @@ body {
 .book-card span {
   font-weight: 900;
 }
+
+.book-list::-webkit-scrollbar {
+  display: none;
+}
 /* book list END */
+
+/* book form START */
+.book-form {
+  background-color: var(--transparent-background);
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  /* display: flex; */
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  display: none;
+}
+
+.book-form .container {
+  background-color: var(--background-color);
+  padding: 42px 65px 65px 65px;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 30px 90px;
+  border-radius: 12px;
+  border: 4px solid var(--accent-color);
+  position: relative;
+}
+
+.book-details label {
+  margin-bottom: 24px;
+  font-size: 16px;
+  font-family: "Cinzel", serif;
+}
+
+.book-details input {
+  margin: 2px 0;
+  font-size: 18px;
+  font-family: "Quicksand", sans-serif;
+  padding: 6px 12px;
+  border-radius: 12px;
+  outline: none;
+  border: none;
+}
+
+.book-details label,
+.book-details input {
+  display: block;
+  width: 100%;
+}
+
+#close-form-button {
+  font-family: "Cinzel", serif;
+  font-size: 24px;
+  font-weight: 900;
+  background-color: var(--accent-color);
+  outline: none;
+  border: 1px solid var(--primary-color);
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  color: var(--primary-color);
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+#close-form-button:hover {
+  background-color: var(--primary-color);
+  color: var(--accent-color);
+}
+
+.read-status label {
+  font-family: "Cinzel", serif;
+  padding-right: 12px;
+}
+
+.read-status {
+  margin-bottom: 28px;
+}
+
+/* Book form END */
