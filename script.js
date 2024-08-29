@@ -40,6 +40,10 @@ function handleRemoveBook(index) {
   bookListContainer.removeChild(book);
 }
 
+function getStatusText(book) {
+  return book.read ? "Read" : "Not read yet";
+}
+
 function createBookCard(book) {
   const bookListContainer = document.querySelector(".book-list");
 
@@ -67,8 +71,22 @@ function createBookCard(book) {
   status.classList.add("book-status");
   status.textContent = "Status: ";
   const span = document.createElement("span");
-  span.textContent = book.read ? "Read" : "Unread";
+  span.textContent = getStatusText(book);
+
+  // edit read status
+  const editButton = document.createElement("button");
+  editButton.classList.add("edit-read-button");
+  const editIcon = document.createElement("img");
+  editIcon.src = "images/edit.svg";
+  editIcon.alt = "Edit Icon";
+  editButton.appendChild(editIcon);
+  editButton.addEventListener("click", () => {
+    book.setRead();
+    span.textContent = getStatusText(book);
+  });
+
   status.appendChild(span);
+  status.appendChild(editButton);
 
   // delete button
   const deleteButton = document.createElement("button");

@@ -36,7 +36,7 @@ body {
   font-family: "Quicksand", sans-serif;
   display: grid;
   grid-template-columns: 80px 1fr;
-  grid-template-rows: 150px 1fr;
+  grid-template-rows: 100px 1fr;
   grid-template-areas:
     "sidebar header header"
     "sidebar main main"
@@ -105,14 +105,16 @@ body {
 /* Sidebar END */
 
 .header {
+  display: flex;
+  justify-content: center;
   grid-area: header;
+  background-color: var(--accent-color);
   padding: 24px;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
-    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 60px 40px -7px;
 }
 
 .main-content {
-  padding: 24px;
+  padding: 0 24px;
   grid-area: main;
   background-color: var(--foreground-color);
   height: 100%;
@@ -137,6 +139,7 @@ body {
 /* book list START */
 
 .book-list {
+  padding: 24px 0;
   height: 100%;
   margin: 0 auto;
   display: grid;
@@ -146,17 +149,23 @@ body {
   overflow-y: scroll;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
+  justify-content: center;
 }
 .book-card {
+  position: relative;
   font-size: 16px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 6px;
   background-color: var(--background-color);
   border-radius: 12px;
   padding: 24px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
     rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  border: 1px solid var(--accent-color);
+  height: 400px;
+  width: 400px;
 }
 
 .book-card .card-header {
@@ -165,7 +174,6 @@ body {
   width: 100%;
   border-bottom: 1px solid var(--primary-color);
   align-items: flex-start;
-  position: relative;
   padding: 12px 0;
   margin-bottom: 12px;
 }
@@ -178,12 +186,33 @@ body {
   width: 45px;
   height: 45px;
   position: absolute;
-  top: -6px;
-  right: -6px;
+  top: 10px;
+  right: 10px;
 }
 
-.delete-book-button img:hover {
+.delete-book-button img:hover,
+.edit-read-button img:hover {
   filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.2));
+}
+
+.book-status {
+  position: relative;
+}
+
+.edit-read-button {
+  display: inline-block;
+  position: absolute;
+  background-color: var(--background-color);
+  border: none;
+  outline: none;
+  cursor: pointer;
+  bottom: -7px;
+}
+
+.edit-read-button img {
+  display: inline-block;
+  height: 30px;
+  width: 30px;
 }
 
 .book-card h2 {
@@ -192,6 +221,7 @@ body {
 
 .book-card span {
   font-weight: 900;
+  color: var(--primary-color);
 }
 
 .book-list::-webkit-scrollbar {
@@ -276,3 +306,19 @@ body {
 }
 
 /* Book form END */
+
+@media (max-width: 600px) {
+  body {
+    grid-template-columns: 65px 1fr;
+    grid-template-rows: 100px 1fr;
+  }
+
+  .navigation a,
+  .information a {
+    padding: 6px;
+  }
+
+  .main-content {
+    padding: 0 12px;
+  }
+}
