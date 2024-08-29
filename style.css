@@ -1,3 +1,133 @@
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Quicksand:wght@300..700&display=swap");
 * {
-  outline: 1px solid red;
+  /* outline: 1px solid red; */
 }
+
+:root {
+  --primary-color: #3a6ea5;
+  --accent-color: #f2c14e;
+  --background-color: #f8f9fa;
+  --text-color: #333333;
+  --secondary-color: #88aabf;
+  --foreground-color: #b5b5b5;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Cinzel", serif;
+  color: var(--primary-color);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-family: "Quicksand", sans-serif;
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  grid-template-rows: 150px 1fr;
+  grid-template-areas:
+    "sidebar header header"
+    "sidebar main main"
+    "sidebar main main";
+}
+
+/* Sidebar START */
+
+.branding {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 72px;
+}
+
+.sidebar {
+  grid-area: sidebar;
+  background-color: var(--primary-color);
+  color: var(--background-color);
+  height: 100vh;
+  padding: 32px 0;
+}
+
+.navigation ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+.navigation li {
+  display: flex;
+  margin: auto;
+}
+
+.navigation a {
+  text-decoration: none;
+  color: var(--background-color);
+}
+
+.navigation span {
+  display: none;
+}
+
+/* Sidebar END */
+
+.header {
+  grid-area: header;
+  padding: 24px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+
+.main-content {
+  padding: 24px;
+  grid-area: main;
+  background-color: var(--foreground-color);
+}
+
+.primary-button {
+  background-color: var(--primary-color);
+  color: var(--accent-color);
+}
+
+.primary-button:hover {
+  background-color: var(--accent-color);
+  color: var(--primary-color);
+}
+
+/* book list START */
+
+.book-list {
+  display: grid;
+  grid-template-columns: repeat(3, 400px);
+  gap: 24px;
+}
+.book-card {
+  font-size: 16px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background-color: var(--background-color);
+  border-radius: 12px;
+  padding: 28px 16px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+.book-card h2 {
+  border-bottom: 1px solid var(--primary-color);
+  font-size: 32px;
+}
+
+.book-card span {
+  font-weight: 900;
+}
+/* book list END */

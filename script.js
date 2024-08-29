@@ -28,14 +28,49 @@ addBookToLibrary("1984", "George Orwell", 328, false);
 addBookToLibrary("The Great Gatsby", "F. Scott Fitzgerald", 180, true);
 addBookToLibrary("Moby-Dick", "Herman Melville", 635, false);
 
-console.log(myLibrary[0]);
-myLibrary[0].setRead();
-console.log(myLibrary[0]);
-
 function removeBook(index) {
   myLibrary.splice(index, 1);
 }
 
-console.log(myLibrary.length);
-removeBook(0);
-console.log(myLibrary.length);
+function createBookCard(book) {
+  const bookListContainer = document.querySelector(".book-list");
+
+  const bookCard = document.createElement("div");
+  bookCard.classList.add("book-card");
+
+  // show title
+  const title = document.createElement("h2");
+  title.classList.add("book-title");
+  title.textContent = book.title;
+
+  // show author
+  const author = document.createElement("div");
+  author.classList.add("book-author");
+  author.textContent = `by ${book.author}`;
+
+  // show pages
+  const pages = document.createElement("div");
+  pages.classList.add("book-pages");
+  pages.textContent = `${book.pages | 0} pages`;
+
+  // show read status
+  const status = document.createElement("div");
+  status.classList.add("book-status");
+  status.textContent = "Status: ";
+  const span = document.createElement("span");
+  span.textContent = book.read ? "Read" : "Unread";
+  status.appendChild(span);
+
+  bookCard.appendChild(title);
+  bookCard.appendChild(author);
+  bookCard.appendChild(pages);
+  bookCard.appendChild(status);
+
+  bookListContainer.appendChild(bookCard);
+}
+
+function createBookList() {
+  myLibrary.forEach((book) => createBookCard(book));
+}
+
+createBookList();

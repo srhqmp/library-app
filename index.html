@@ -3,12 +3,49 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Library</title>
+    <title>My Library</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="icon" href="images/logo.svg" type="image/x-icon" />
     <script type="module" src="script.js" defer></script>
   </head>
   <body>
-    <h1>My Library</h1>
+    <div class="sidebar">
+      <div class="branding">
+        <img class="logo-image" width="70" src="images/logo.svg" alt="Logo" />
+      </div>
+      <div class="navigation">
+        <ul>
+          <li>
+            <a href="#new"
+              ><img src="images/new.svg" alt="New Book Icon" width="40" /><span
+                >New Book</span
+              ></a
+            >
+          </li>
+          <li>
+            <a href="#"
+              ><img src="images/home.svg" alt="Home Icon" width="40" /><span
+                >Home</span
+              ></a
+            >
+          </li>
+          <li>
+            <a href="#information"
+              ><img
+                src="images/info.svg"
+                alt="Information Icon"
+                width="40"
+              /><span>Information</span></a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="header">
+      <h1>My Library</h1>
+    </div>
+    <div class="main-content">
+      <div class="book-list"></div>
+    </div>
   </body>
 </html>
