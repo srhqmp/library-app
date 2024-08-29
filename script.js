@@ -5,6 +5,7 @@ function Book(title, author, pages, read) {
   this.author = author;
   this.pages = pages;
   this.read = read;
+  this.index = myLibrary.length;
   this.info = function () {
     return `${this.title} by ${this.author}, ${this.pages} pages, ${
       this.read ? "reading" : "not read yet"
@@ -32,11 +33,19 @@ function removeBook(index) {
   myLibrary.splice(index, 1);
 }
 
+function handleRemoveBook(index) {
+  removeBook(index);
+  const bookListContainer = document.querySelector(".book-list");
+  const book = document.querySelector(`.book-card[data-index="${index}"]`);
+  bookListContainer.removeChild(book);
+}
+
 function createBookCard(book) {
   const bookListContainer = document.querySelector(".book-list");
 
   const bookCard = document.createElement("div");
   bookCard.classList.add("book-card");
+  bookCard.dataset.index = book.index;
 
   // show title
   const title = document.createElement("h2");
@@ -61,7 +70,22 @@ function createBookCard(book) {
   span.textContent = book.read ? "Read" : "Unread";
   status.appendChild(span);
 
-  bookCard.appendChild(title);
+  // delete button
+  const deleteButton = document.createElement("button");
+  deleteButton.classList.add("delete-book-button");
+  const deleteIcon = document.createElement("img");
+  deleteIcon.src = "images/trash.svg";
+  deleteIcon.alt = "Delete Icon";
+  deleteButton.appendChild(deleteIcon);
+  deleteButton.addEventListener("click", () => handleRemoveBook(book.index));
+
+  // card-header
+  const header = document.createElement("div");
+  header.classList.add("card-header");
+  header.appendChild(title);
+  header.appendChild(deleteButton);
+
+  bookCard.appendChild(header);
   bookCard.appendChild(author);
   bookCard.appendChild(pages);
   bookCard.appendChild(status);
@@ -99,7 +123,7 @@ function handleCreateBook(event) {
   const author = document.getElementById("author").value;
   const pages = document.getElementById("pages").value;
   const read = Boolean(document.getElementById("true").checked);
-  
+
   if (title && author && pages) {
     const newBook = addBookToLibrary(title, author, pages, read);
     createBookCard(newBook);

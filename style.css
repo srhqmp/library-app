@@ -22,6 +22,8 @@ h5,
 h6 {
   font-family: "Cinzel", serif;
   color: var(--primary-color);
+  margin: 0;
+  padding: 0;
 }
 
 body {
@@ -152,13 +154,39 @@ body {
   gap: 6px;
   background-color: var(--background-color);
   border-radius: 12px;
-  padding: 28px 16px;
+  padding: 24px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
     rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
 
-.book-card h2 {
+.book-card .card-header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
   border-bottom: 1px solid var(--primary-color);
+  align-items: flex-start;
+  position: relative;
+  padding: 12px 0;
+  margin-bottom: 12px;
+}
+
+.delete-book-button {
+  display: block;
+  border: none;
+  background-color: var(--background-color);
+  cursor: pointer;
+  width: 45px;
+  height: 45px;
+  position: absolute;
+  top: -6px;
+  right: -6px;
+}
+
+.delete-book-button img:hover {
+  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.2));
+}
+
+.book-card h2 {
   font-size: 32px;
 }
 
